@@ -1,12 +1,8 @@
 from enum import Enum
 
-class Bender(Enum):
-    AIR_BENDER = "air"
-    WATER_BENDER = "water"
-    EARTH_BENDER = "earth"
-    FIRE_BENDER = "fire"
 
 class TextType(Enum):
+    TEXT = "text"
     NORMAL = "normal"
     BOLD = "bold"
     ITALIC = "italic"
@@ -14,18 +10,19 @@ class TextType(Enum):
     LINK = "link"
     IMAGE = "image"
 
+
 class TextNode:
     def __init__(self, text, text_type, url=None):
         self.text = text
         self.text_type = text_type
         self.url = url
 
-
-    def __eq__(self, TextNode1, TextNode2):
-        return TextNode1.text == TextNode2.text
-    
+    def __eq__(self, other):
+        return (self.text == other.text and
+                self.text_type == other.text_type and
+                self.url == other.url)
 
     def __repr__(self):
-        return f"{self.text}, {self.text_type.value}, {self.url}"
+        return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
 
 
